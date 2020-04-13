@@ -1,4 +1,4 @@
-from .graphql import run_query
+from graphql import run_query
 from time import sleep
 import requests
 import re
@@ -77,6 +77,6 @@ def update_news_like_count(d):
             }
           }
     """ % (mutation_data)
-    print(counts_query)
-    print(run_query(counts_query))
+    #print(counts_query)
+    return run_query(counts_query)
 

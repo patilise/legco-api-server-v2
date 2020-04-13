@@ -1,0 +1,5 @@
+requests==2.22.0
+beautifulsoup4==4.8.2
+slimit==0.8.1
+lxml==4.1.1
+ply==3.8

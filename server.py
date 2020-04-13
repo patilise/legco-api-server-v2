@@ -13,20 +13,6 @@ load_dotenv(dotenv_path)
 app = Flask(__name__)
 
 
-@app.cli.command("fetch-appledaily")
-@click.argument("rundate")
-def fetch_apple_daily(rundate):
-    appledaily_articles = fetch_news_from_appledaily(rundate.replace("-", ""))
-    print("Fetched %d articles" % (len(appledaily_articles)))
-    print(upsert_news(appledaily_articles))
-    print("Finding related articles")
-    print(update_individual_news(appledaily_articles))
-    before = datetime.datetime.strptime(rundate,"%Y-%m-%d") - datetime.timedelta(weeks = 2)
-    before = before.strftime("%Y-%m-%d")
-    print("Updating like counts from %s" % (before))
-    update_news_like_count(before)   
-
-
 @app.route("/budget/meeting/<int:year>/")
 def budget_meeting(year):
     query = \

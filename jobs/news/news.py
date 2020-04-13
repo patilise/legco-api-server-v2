@@ -1,4 +1,4 @@
-from .graphql import run_query
+from graphql import run_query
 
 def upsert_news(news):
     template = """

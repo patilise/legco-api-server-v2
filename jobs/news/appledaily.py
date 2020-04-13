@@ -9,7 +9,8 @@ import re
 import multiprocessing
 import json
 import hashlib
-from .graphql import run_query
+from graphql import run_query
+
 
 
 def fetch(item):
@@ -19,8 +20,10 @@ def fetch(item):
         r.encoding = "utf-8"
         soup = BeautifulSoup(r.text, "html.parser")
         msg = r.text
-        item["title"] = soup.find("meta",  property="og:title")["content"]
-        item["image"] = soup.find("meta",  property="og:image")["content"]
+        og_title = soup.find("meta",  property="og:title")
+        og_image = soup.find("meta",  property="og:image")
+        item["title"] = "" if og_title is None else og_title.get("content", "")
+        item["image"] = "" if og_image is None else og_image.get("content", "")
         script_text = None
         for s in soup.find_all("script"):
             if s.string is None:

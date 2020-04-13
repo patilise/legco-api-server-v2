@@ -2,7 +2,7 @@ import  json
 import requests
 import re
 import sys
-from .graphql import run_query
+from graphql import run_query
 
 
 
